@@ -14,7 +14,7 @@
                 "load",
                 "break main",
             ],
-            "preLaunchTask": "Build"
+            "preLaunchTask": "BuildAndStartOpenOCD"
         }
     ]
 }

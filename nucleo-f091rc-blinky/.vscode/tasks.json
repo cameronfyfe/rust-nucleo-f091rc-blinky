@@ -60,6 +60,33 @@
 				"focus": true,
 				"panel": "shared"
 			}
+        },
+        {
+			"label": "BuildAndStartOpenOCD",
+			"type": "shell",
+			"isBackground": false,
+            "command": "cargo build && start openocd",
+            // Problem Matcher regex for rust cargo build
+            "problemMatcher": {
+                "owner": "build",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": [{
+                    "regexp": "(error):(.*)",
+                    "severity": 1,
+                    "message": 2
+                },{
+                    "regexp": "-->\\s+([^:]*):(\\d+):(\\d+)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3
+                }]
+            },
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
 		}
 	]
 }
