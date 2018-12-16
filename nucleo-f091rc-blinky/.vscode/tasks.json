@@ -1,0 +1,65 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Check",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": false,
+            "command": "cargo check",
+            // Problem Matcher regex for rust cargo build
+            "problemMatcher": {
+                "owner": "build",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": [{
+                    "regexp": "(error):(.*)",
+                    "severity": 1,
+                    "message": 2
+                },{
+                    "regexp": "-->\\s+([^:]*):(\\d+):(\\d+)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3
+                }]
+            },
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+        },
+        {
+			"label": "Build",
+			"type": "shell",
+			"isBackground": false,
+            "command": "cargo build",
+            // Problem Matcher regex for rust cargo build
+            "problemMatcher": {
+                "owner": "build",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": [{
+                    "regexp": "(error):(.*)",
+                    "severity": 1,
+                    "message": 2
+                },{
+                    "regexp": "-->\\s+([^:]*):(\\d+):(\\d+)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3
+                }]
+            },
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		}
+	]
+}
